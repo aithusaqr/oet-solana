@@ -29,3 +29,23 @@ That means builders should be able to answer questions like:
 - Which assumptions explain the disagreement?
 
 The goal is not to remove protocol flexibility. The goal is to make execution state reproducible, inspectable, and comparable across systems.
+
+### 1. Reproducible Interpretation, Not Perfect Determinism
+
+OET events should support reproducible interpretation where possible and explicit disagreement where not.
+
+Given the same event record, systems should be able to derive comparable execution state, identify missing context, or explain why two interpretations differ.
+
+This applies to:
+
+- order lifecycle state
+- fill history
+- position state
+- balance state
+- fees
+- funding
+- settlement
+- timestamp interpretation
+- source-of-truth comparison
+
+OET does not assume execution state is perfectly deterministic. Instead, it makes the evidence structured enough that builders can compare interpretations without relying on screenshots, private dashboards, custom scripts, or venue-specific lore.
