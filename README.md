@@ -242,5 +242,3 @@ Useful contributions include:
 ## License
 
 This project is intended to be released under an open-source license.
-
-Recommended license: Apache-2.0 or MIT.
