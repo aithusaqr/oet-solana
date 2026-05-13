@@ -1,6 +1,6 @@
 # OET-Solana
 
-## One-Line Summary
+The public repository currently contains the early specification preview, project scope, design principles, roadmap, public-good framing, and Apache-2.0 license. Schemas, validation tooling, Solana adapter examples, sample datasets, and a lightweight demo timeline viewer are planned as grant-funded milestones.
 
 **OET-Solana gives Solana builders a shared execution language for observable execution facts across orders, fills, balances, positions, fees, funding, settlement, and reported state.**
 
