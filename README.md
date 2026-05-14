@@ -1,5 +1,5 @@
 # OET-Solana
-
+## Open Execution Telemetry For Solana
 > Status: early public specification preview.
 >
 > This repository currently contains the initial project scope, design principles, roadmap, public-good framing, and Apache-2.0 license. Schemas, validation tooling, Solana adapter examples, sample datasets, and a lightweight demo timeline viewer are planned as upcoming milestones.
