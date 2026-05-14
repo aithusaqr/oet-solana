@@ -1,0 +1,240 @@
+{
+  "oet_version": "0.1.0-preview",
+  "profile": "oet-solana",
+  "dataset_id": "sample_oet_timeline_001",
+  "description": "Synthetic OET-Solana timeline showing observable execution records across order lifecycle events, fills, fees, balance changes, settlement, source observations, and reported state differences.",
+  "disclaimer": "This dataset is synthetic and for demonstration only. It does not contain real trading data, private account information, proprietary reconciliation logic, or position-tracking logic.",
+  "entities": {
+    "account_id": "demo_account_001",
+    "instrument_id": "SOL_USDC",
+    "order_id": "demo_order_001",
+    "client_order_id": "demo_client_order_001"
+  },
+  "events": [
+    {
+      "event_id": "evt_001",
+      "event_type": "order_submitted",
+      "source": {
+        "source_id": "demo_trading_bot",
+        "source_type": "bot"
+      },
+      "account_id": "demo_account_001",
+      "instrument_id": "SOL_USDC",
+      "order_id": "demo_order_001",
+      "client_order_id": "demo_client_order_001",
+      "side": "buy",
+      "order_type": "limit",
+      "quantity": "2.500000",
+      "price": "145.200000",
+      "timestamps": {
+        "decision_timestamp": "2026-05-14T14:00:00.100Z",
+        "submitted_timestamp": "2026-05-14T14:00:00.140Z",
+        "observed_timestamp": "2026-05-14T14:00:00.180Z"
+      },
+      "relationships": [],
+      "extensions": {
+        "demo_note": "Synthetic order intent emitted by a demo trading bot."
+      }
+    },
+    {
+      "event_id": "evt_002",
+      "event_type": "order_accepted",
+      "source": {
+        "source_id": "demo_protocol_adapter",
+        "source_type": "protocol_adapter"
+      },
+      "account_id": "demo_account_001",
+      "instrument_id": "SOL_USDC",
+      "order_id": "demo_order_001",
+      "client_order_id": "demo_client_order_001",
+      "timestamps": {
+        "source_event_timestamp": "2026-05-14T14:00:00.420Z",
+        "observed_timestamp": "2026-05-14T14:00:00.470Z"
+      },
+      "relationships": [
+        {
+          "relationship_type": "responds_to",
+          "event_id": "evt_001"
+        }
+      ],
+      "extensions": {
+        "demo_note": "Synthetic protocol adapter reports that the order was accepted."
+      }
+    },
+    {
+      "event_id": "evt_003",
+      "event_type": "fill_observed",
+      "source": {
+        "source_id": "demo_indexer",
+        "source_type": "indexer"
+      },
+      "account_id": "demo_account_001",
+      "instrument_id": "SOL_USDC",
+      "order_id": "demo_order_001",
+      "fill_id": "demo_fill_001",
+      "side": "buy",
+      "quantity": "2.500000",
+      "price": "145.200000",
+      "timestamps": {
+        "source_event_timestamp": "2026-05-14T14:00:01.100Z",
+        "ledger_timestamp": "2026-05-14T14:00:01.120Z",
+        "observed_timestamp": "2026-05-14T14:00:01.340Z"
+      },
+      "relationships": [
+        {
+          "relationship_type": "fills_order",
+          "event_id": "evt_002"
+        }
+      ],
+      "extensions": {
+        "signature": "demo_signature_001",
+        "slot": 341234567,
+        "demo_note": "Synthetic fill observed by an indexer."
+      }
+    },
+    {
+      "event_id": "evt_004",
+      "event_type": "fee_charged",
+      "source": {
+        "source_id": "demo_wallet_observer",
+        "source_type": "wallet_observer"
+      },
+      "account_id": "demo_account_001",
+      "asset": "USDC",
+      "amount": "0.040000",
+      "fee_type": "execution_fee",
+      "timestamps": {
+        "ledger_timestamp": "2026-05-14T14:00:01.120Z",
+        "observed_timestamp": "2026-05-14T14:00:01.520Z"
+      },
+      "relationships": [
+        {
+          "relationship_type": "fee_for",
+          "event_id": "evt_003"
+        }
+      ],
+      "extensions": {
+        "demo_note": "Synthetic fee associated with the observed fill."
+      }
+    },
+    {
+      "event_id": "evt_005",
+      "event_type": "balance_changed",
+      "source": {
+        "source_id": "demo_wallet_observer",
+        "source_type": "wallet_observer"
+      },
+      "account_id": "demo_account_001",
+      "asset": "USDC",
+      "delta": "-363.040000",
+      "reason": "trade_execution_and_fee",
+      "timestamps": {
+        "ledger_timestamp": "2026-05-14T14:00:01.120Z",
+        "observed_timestamp": "2026-05-14T14:00:01.700Z"
+      },
+      "relationships": [
+        {
+          "relationship_type": "balance_effect_of",
+          "event_id": "evt_003"
+        },
+        {
+          "relationship_type": "includes_fee",
+          "event_id": "evt_004"
+        }
+      ],
+      "extensions": {
+        "demo_note": "Synthetic quote-asset balance change after execution and fee."
+      }
+    },
+    {
+      "event_id": "evt_006",
+      "event_type": "balance_changed",
+      "source": {
+        "source_id": "demo_wallet_observer",
+        "source_type": "wallet_observer"
+      },
+      "account_id": "demo_account_001",
+      "asset": "SOL",
+      "delta": "2.500000",
+      "reason": "trade_execution",
+      "timestamps": {
+        "ledger_timestamp": "2026-05-14T14:00:01.120Z",
+        "observed_timestamp": "2026-05-14T14:00:01.720Z"
+      },
+      "relationships": [
+        {
+          "relationship_type": "balance_effect_of",
+          "event_id": "evt_003"
+        }
+      ],
+      "extensions": {
+        "demo_note": "Synthetic base-asset balance change after execution."
+      }
+    },
+    {
+      "event_id": "evt_007",
+      "event_type": "settlement_observed",
+      "source": {
+        "source_id": "demo_settlement_observer",
+        "source_type": "settlement_observer"
+      },
+      "account_id": "demo_account_001",
+      "instrument_id": "SOL_USDC",
+      "order_id": "demo_order_001",
+      "settlement_status": "settled",
+      "timestamps": {
+        "ledger_timestamp": "2026-05-14T14:00:01.120Z",
+        "observed_timestamp": "2026-05-14T14:00:02.000Z"
+      },
+      "relationships": [
+        {
+          "relationship_type": "settles",
+          "event_id": "evt_003"
+        },
+        {
+          "relationship_type": "confirms_balance_change",
+          "event_id": "evt_005"
+        },
+        {
+          "relationship_type": "confirms_balance_change",
+          "event_id": "evt_006"
+        }
+      ],
+      "extensions": {
+        "demo_note": "Synthetic settlement observation for the execution."
+      }
+    },
+    {
+      "event_id": "evt_008",
+      "event_type": "reported_state_difference",
+      "source": {
+        "source_id": "demo_comparison_tool",
+        "source_type": "comparison_tool"
+      },
+      "account_id": "demo_account_001",
+      "severity": "warning",
+      "description": "The indexer observed the fill before the wallet balance update was available to the local observer.",
+      "timestamps": {
+        "observed_timestamp": "2026-05-14T14:00:02.250Z"
+      },
+      "relationships": [
+        {
+          "relationship_type": "compares",
+          "event_id": "evt_003"
+        },
+        {
+          "relationship_type": "compares",
+          "event_id": "evt_005"
+        },
+        {
+          "relationship_type": "compares",
+          "event_id": "evt_006"
+        }
+      ],
+      "extensions": {
+        "difference_type": "observation_delay",
+        "demo_note": "This does not imply incorrect state; it demonstrates how source observation differences can be represented."
+      }
+    }
+  ]
+}
