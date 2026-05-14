@@ -243,4 +243,4 @@ Useful contributions include:
 
 ## License
 
-This project is intended to be released under an open-source license.
+This project is released under the Apache License 2.0.
