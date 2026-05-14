@@ -136,6 +136,9 @@ OET does not assume execution state is perfectly deterministic. Instead, it make
 
 ## Example Use Cases
 
+### DEXs / Execution Venues
+Expose standardized execution telemetry for swaps, fills, routing paths, fees, slippage, failed transactions, and settlement outcomes without flattening protocol-specific mechanics.
+
 ### Trading Bots
 
 Capture intent, submitted orders, fills, fees, and wallet balance changes in one structured event record.
